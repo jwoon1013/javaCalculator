@@ -41,7 +41,7 @@ public class Calculator extends JFrame {
                 buttons[i].setBackground(Color.darkGray);
                 buttons[i].setForeground(Color.white); // 폰트 컬러 지정
             }
-
+            buttons[i].addActionListener(new PadActionListener());
             numButtonPanel.add(buttons[i]);
         }
 
@@ -59,6 +59,20 @@ public class Calculator extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // 창을 닫을때 hide할지 dispose할지 exit할지
     }
 
+    class PadActionListener implements ActionListener{ //작업 이벤트 수신 목적의 수신기 인터페이스임.
+        public void actionPerformed(ActionEvent e){ // 작업 이벤트가 발생하면 메소드 호출
+            String operation = e.getActionCommand();
+            if(operation.equals("C")){
+                textInputSpace.setText("");
+            }
+            else if(operation.equals("=")){
+
+            }
+            else {
+                textInputSpace.setText(textInputSpace.getText() + e.getActionCommand());
+            }
+        }
+    }
 
     public static void main(String[] args) {
         new Calculator();
